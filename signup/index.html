@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Sign Up | Impact Academy Teachers</title>
+
+    <link rel="stylesheet" href="signup.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="signup-bg"></div>
+
+    <main class="signup-page">
+
+        <!-- LEFT: Branding, Hero, Benefits, Trust -->
+        <section class="signup-left">
+            <a href="../index.html" class="signup-logo">
+                <span class="brand-mark">IA</span>
+                Impact Academy Teachers
+            </a>
+
+            <div class="signup-badge">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                Teach. Inspire. Earn.
+            </div>
+
+            <h1>Join Impact Academy Teachers and start your teaching journey.</h1>
+
+            <p>
+                Create your instructor profile to share your expertise, connect with motivated learners,
+                build a rewarding teaching career, and grow your impact on a platform designed for educators.
+            </p>
+
+            <!-- HERO VISUAL -->
+            <div class="hero-visual">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="hero-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80"
+                        alt="Teacher leading an engaging classroom lesson"
+                        loading="lazy" />
+                    <div class="hero-card-bottom">
+                        <strong>Premium Teaching Platform</strong>
+                        <span class="rating-chip">
+                            <i class="fa-solid fa-star"></i> Top rated
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BENEFITS -->
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Flexible teaching schedule</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-eye"></i>
+                    <span>Premium teacher visibility</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>Reliable income opportunities</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Connect with motivated learners</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Grow your teaching brand</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>Teach students worldwide</span>
+                </div>
+            </div>
+
+            <!-- TRUST STATS -->
+            <div class="trust-stats">
+                <div>
+                    <strong>15k+</strong>
+                    <span>Active learners</span>
+                </div>
+                <div>
+                    <strong>92%</strong>
+                    <span>Teacher satisfaction</span>
+                </div>
+                <div>
+                    <strong>80+</strong>
+                    <span>Countries reached</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT: Registration Form -->
+        <section class="signup-card">
+
+            <div class="form-header">
+                <h2>Become an Instructor</h2>
+                <p>Set up your teacher profile and start inspiring learners.</p>
+            </div>
+
+            <div id="formMessage" class="form-message" style="display:none;"></div>
+
+            <form id="teacherSignupForm">
+                <div class="input-group">
+                    <label for="fullname">Full Name</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="fullname" placeholder="Enter your full name" required>
+                    </div>
+                    <small id="fullnameError" class="field-error"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+                    <small id="emailError" class="field-error"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" placeholder="Create a strong password" required>
+                    </div>
+                    <small id="passwordError" class="field-error"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    <small id="confirmPasswordError" class="field-error"></small>
+                </div>
+
+                <label class="terms">
+                    <input type="checkbox" id="termsAccepted" required>
+                    <span>
+                        I agree to Impact Academy Teachers terms, privacy policy, and instructor agreement.
+                    </span>
+                </label>
+                <small id="termsError" class="field-error"></small>
+
+                <button type="submit" class="signup-btn">
+                    Create Instructor Account
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+
+            <!-- Google -->
+            <button class="google-btn" type="button">
+                <i class="fa-brands fa-google"></i>
+                Continue with Google
+            </button>
+
+            <!-- Sign in -->
+            <p class="signin-text">
+                Already have an instructor account?
+                <a href="../index.html">Sign in here</a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <span class="brand-mark">IA</span>
+            <div>
+                <strong>Impact Academy Teachers</strong>
+                <p>Premium teaching opportunities for educators who want to inspire, earn, and grow.</p>
+            </div>
+        </div>
+
+        <div class="footer-columns">
+            <div class="footer-col">
+                <span>Teacher Platform</span>
+                <a href="../index.html#benefits">Benefits</a>
+                <a href="../index.html#why-teach">Why Teach</a>
+                <a href="../index.html#subjects">Subjects</a>
+                <a href="../index.html#faq">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <span>Main Website</span>
+                <a href="https://impactacademy.site" target="_blank" rel="noopener noreferrer">Visit impactacademy.site</a>
+                <a href="https://impactacademy.site/services" target="_blank" rel="noopener noreferrer">Services</a>
+                <a href="https://impactacademy.site/portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                <a href="https://impactacademy.site/contact" target="_blank" rel="noopener noreferrer">Contact</a>
+            </div>
+            <div class="footer-col">
+                <span>Support</span>
+                <a href="mailto:Info.impactechacademy@gmail.com">Email Support</a>
+                <a href="https://impactacademy.site/faqs" target="_blank" rel="noopener noreferrer">FAQs</a>
+                <a href="https://impactacademy.site/help-center" target="_blank" rel="noopener noreferrer">Help Center</a>
+                <a href="https://impactacademy.site/feedback" target="_blank" rel="noopener noreferrer">Feedback</a>
+            </div>
+            <div class="footer-col">
+                <span>Quick Links</span>
+                <a href="https://impactacademy.site/about-us" target="_blank" rel="noopener noreferrer">About Us</a>
+                <a href="https://impactacademy.site/careers" target="_blank" rel="noopener noreferrer">Careers</a>
+                <a href="https://impactacademy.site/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy</a>
+                <a href="https://impactacademy.site/terms-and-conditions" target="_blank" rel="noopener noreferrer">Terms</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Teaching with Impact Academy Teachers. Company reference: <a href="https://impactacademy.site" target="_blank" rel="noopener noreferrer">impactacademy.site</a></p>
+            <p>&copy; 2026 Impact Academy Teachers. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="verify-modal" id="verifyModal">
+        <div class="verify-modal-box">
+            <div class="verify-icon">
+                <i class="fa-solid fa-envelope-circle-check"></i>
+            </div>
+
+            <h2>Verify Your Email</h2>
+
+            <p>
+                Your teacher account has been created successfully. We sent a verification link to:
+            </p>
+
+            <strong id="verifyEmailText">your email</strong>
+
+            <p class="verify-small">
+                Please check your inbox or spam folder and verify your account before signing in.
+            </p>
+
+            <button type="button" id="closeVerifyModal" class="verify-btn">
+                Okay, I’ll Verify
+                <i class="fa-solid fa-check"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="signup.js"></script>
+
+</body>
+
+</html>
