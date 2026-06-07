@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- TEACHER LANDING PAGE -->
+  <url>
+    <loc>https://teacher.impactacademy.site/</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- TEACHER SIGN IN -->
+  <url>
+    <loc>https://teacher.impactacademy.site/sign-in/</loc>
+    <priority>0.7</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- TEACHER SIGN UP -->
+  <url>
+    <loc>https://teacher.impactacademy.site/signup/</loc>
+    <priority>0.7</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- TEACHER DASHBOARD -->
+  <url>
+    <loc>https://teacher.impactacademy.site/dashboard/</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- TEACHER SETUP / ONBOARDING / APPLICATION STATUS -->
+  <url>
+    <loc>https://teacher.impactacademy.site/dashboard/set-up/</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- CREATE COURSE (includes Review / Submission flow) -->
+  <url>
+    <loc>https://teacher.impactacademy.site/dashboard/create-course/</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+</urlset>
