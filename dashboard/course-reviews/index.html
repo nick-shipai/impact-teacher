@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Reviews · Impactech Admin</title>
+  <link rel="stylesheet" href="/dashboard/course-reviews/course-reviews.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  <main class="list-page" id="page">
+    <header class="list-topbar">
+      <div class="brand">
+        <div class="brand-icon"><i class="fa-solid fa-i-cursor"></i></div>
+        <div>
+          <h2>IMPACTECH</h2>
+          <span>COURSE REVIEWS</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="ghost-link" href="../"><i class="fa-solid fa-arrow-left"></i> Dashboard</a>
+        <button class="refresh-btn" id="refreshBtn"><i class="fa-solid fa-rotate"></i> Refresh</button>
+        <div class="admin-profile">
+          <div class="avatar">IA</div>
+          <div>
+            <h4>Impact Admin</h4>
+            <p>Super Admin</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="list-hero">
+      <div>
+        <h1>Course Reviews</h1>
+        <p>Review, approve, or reject teacher-submitted courses.</p>
+      </div>
+      <div class="hero-actions">
+        <div class="filter-group">
+          <select id="statusFilter" class="filter-select">
+            <option value="">All Statuses</option>
+            <option value="pending">Pending Review</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+          <div class="search-wrap">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search courses or teachers..." />
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="error-state" id="errorState" style="display:none">
+      <div class="error-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+      <h3 id="errorTitle">Error</h3>
+      <p id="errorText">Something went wrong.</p>
+      <button class="action-btn" id="retryBtn"><i class="fa-solid fa-rotate"></i> Retry</button>
+    </div>
+    <div class="table-wrap" id="tableWrap">
+      <table class="data-table" id="coursesTable">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Teacher</th>
+            <th>Category</th>
+            <th>Access</th>
+            <th>Submitted</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="empty-icon"><i class="fa-solid fa-book-open"></i></div>
+      <h3>No courses found</h3>
+      <p id="emptyText">No courses match your current filters.</p>
+    </div>
+  </main>
+  <script src="/dashboard/course-reviews/course-reviews.js"></script>
+</body>
+</html>

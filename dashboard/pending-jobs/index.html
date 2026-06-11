@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pending Jobs - Impactech Admin</title>
+  <link rel="stylesheet" href="/dashboard/admin-list.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <script>
+    window.ADMIN_LIST_CONFIG = {
+      title: "Pending Jobs",
+      subtitle: "Review job posts that still need admin approval and jump straight into the verification page.",
+      endpoint: "/api/admin/jobs",
+      rowType: "jobs",
+      emptyTitle: "No pending jobs",
+      emptyText: "Everything is currently reviewed or there are no paid submissions waiting.",
+      defaultLimit: 200,
+      filters: [
+        {
+          name: "status",
+          options: [
+            { value: "pending", label: "Pending review" },
+            { value: "all", label: "All jobs" },
+            { value: "active", label: "Active" },
+            { value: "draft", label: "Draft" }
+          ]
+        },
+        {
+          name: "reviewStatus",
+          options: [
+            { value: "pending_review", label: "Pending review" },
+            { value: "all", label: "All review states" },
+            { value: "needs_manual_review", label: "Needs manual review" },
+            { value: "approved", label: "Approved" },
+            { value: "rejected", label: "Rejected" }
+          ]
+        },
+        {
+          name: "paymentStatus",
+          options: [
+            { value: "all", label: "All payments" },
+            { value: "paid", label: "Paid" },
+            { value: "successful", label: "Successful" },
+            { value: "completed", label: "Completed" }
+          ]
+        }
+      ],
+      sortOptions: [
+        { value: "newest", label: "Newest" },
+        { value: "oldest", label: "Oldest" },
+        { value: "title", label: "Title" },
+        { value: "budget_high", label: "Budget high" },
+        { value: "budget_low", label: "Budget low" }
+      ]
+    };
+  </script>
+
+  <main class="list-page">
+    <header class="list-topbar">
+      <div class="brand">
+        <div class="brand-icon"><i class="fa-solid fa-i-cursor"></i></div>
+        <div>
+          <h2>IMPACTECH</h2>
+          <span>ADMIN PANEL</span>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <a class="ghost-link" href="../"><i class="fa-solid fa-arrow-left"></i> Dashboard</a>
+        <div class="admin-profile">
+          <div class="avatar">IA</div>
+          <div>
+            <h4>Impact Admin</h4>
+            <p>Super Admin</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1 id="pageTitle">Pending Jobs</h1>
+        <p id="pageSubtitle"></p>
+      </div>
+      <div class="hero-badge" id="heroBadge">Pending Jobs</div>
+    </section>
+
+    <section class="toolbar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="searchInput" class="search-input" type="text" placeholder="Search pending jobs..." />
+      </div>
+
+      <div class="filters" id="filters"></div>
+
+      <div id="sortWrap"></div>
+
+      <button id="refreshBtn" class="refresh-btn" type="button"><i class="fa-solid fa-rotate"></i> Refresh</button>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h3>Pending Jobs</h3>
+        <span id="recordCount">0 records</span>
+      </div>
+
+      <div id="loadingState" class="loading-state hidden">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <h4>Loading pending jobs...</h4>
+        <p>Please wait while the admin list loads.</p>
+      </div>
+
+      <div id="emptyState" class="empty-state hidden">
+        <i class="fa-solid fa-hourglass-half"></i>
+        <h4 id="emptyTitle">No pending jobs</h4>
+        <p id="emptyText">Everything is currently reviewed or there are no paid submissions waiting.</p>
+      </div>
+
+      <div id="tableWrap" class="table-wrap">
+        <table>
+          <thead id="tableHead"></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/dashboard/admin-list.js"></script>
+</body>
+
+</html>
