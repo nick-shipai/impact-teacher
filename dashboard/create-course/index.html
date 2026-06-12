@@ -127,36 +127,20 @@
               <small class="helper-text">Detailed descriptions help students decide. Include learning outcomes, topics, and target audience.</small>
             </div>
             <div class="form-group">
-              <label for="courseCategory">Course Category</label>
-              <select id="courseCategory" name="courseCategory">
-                <option value="">Select a category</option>
-                <option value="Mathematics">Mathematics</option>
-                <option value="English">English</option>
-                <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="Biology">Biology</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Programming">Programming</option>
-                <option value="Web Development">Web Development</option>
-                <option value="Mobile Development">Mobile Development</option>
-                <option value="Cybersecurity">Cybersecurity</option>
-                <option value="Data Science">Data Science</option>
-                <option value="AI & Machine Learning">AI & Machine Learning</option>
-                <option value="Business">Business</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Finance">Finance</option>
-                <option value="Graphic Design">Graphic Design</option>
-                <option value="UI/UX Design">UI/UX Design</option>
-                <option value="Music">Music</option>
-                <option value="Arts">Arts</option>
-                <option value="Agriculture">Agriculture</option>
-                <option value="Engineering">Engineering</option>
-                <option value="Medicine">Medicine</option>
-                <option value="Law">Law</option>
-                <option value="Languages">Languages</option>
-                <option value="Exam Preparation">Exam Preparation</option>
-                <option value="Vocational Skills">Vocational Skills</option>
-              </select>
+              <label>Course Category</label>
+              <div class="picker-trigger" id="categoryTrigger">
+                <div class="picker-trigger-left">
+                  <i class="fa-solid fa-search"></i>
+                  <span class="picker-placeholder" id="categoryPlaceholder">Click to select categories</span>
+                </div>
+                <div class="picker-trigger-right">
+                  <span class="picker-count" id="categoryCount" style="display:none">0</span>
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+              </div>
+              <div class="picker-chips" id="categoryChips"></div>
+              <input type="hidden" id="courseCategory" value="" />
+              <small class="helper-text">Choose one or more categories that best describe your course.</small>
             </div>
           </div>
         </div>
@@ -191,11 +175,26 @@
                   <div class="upload-icon"><i class="fa-solid fa-video"></i></div>
                   <h4>Promotional Video</h4>
                   <p>Drag & drop or click to browse</p>
-                  <span class="upload-hint">Optional &bull; MP4 &bull; Max 2 minutes</span>
+                  <div class="upload-formats">MP4 &bull; WebM &bull; MOV &bull; Max 100MB</div>
                 </div>
                 <div class="upload-preview" id="videoPreview" style="display:none">
-                  <video id="videoPreviewPlayer" controls></video>
-                  <button type="button" class="upload-remove" id="videoRemove"><i class="fa-solid fa-trash-can"></i></button>
+                  <div class="video-preview-wrap">
+                    <video id="videoPreviewPlayer" class="video-preview-player"></video>
+                    <div class="video-preview-overlay" id="videoPreviewOverlay">
+                      <button type="button" class="video-play-btn" id="videoPlayBtn"><i class="fa-solid fa-play"></i></button>
+                    </div>
+                    <div class="video-preview-info">
+                      <span class="video-preview-duration" id="videoPreviewDuration">--:--</span>
+                    </div>
+                  </div>
+                  <div class="video-preview-actions">
+                    <button type="button" class="video-action-btn video-replace" id="videoReplace"><i class="fa-solid fa-arrow-up-from-bracket"></i> Replace</button>
+                    <button type="button" class="video-action-btn video-remove" id="videoRemove"><i class="fa-solid fa-trash-can"></i> Remove</button>
+                  </div>
+                  <div class="upload-progress" id="videoProgress" style="display:none">
+                    <div class="upload-progress-bar"><div class="upload-progress-fill" id="videoProgressFill"></div></div>
+                    <span class="upload-progress-text" id="videoProgressText">Uploading...</span>
+                  </div>
                 </div>
               </div>
               <div class="upload-card" id="trailerUpload">
@@ -203,11 +202,26 @@
                   <div class="upload-icon"><i class="fa-solid fa-film"></i></div>
                   <h4>Course Trailer Video</h4>
                   <p>Drag & drop or click to browse</p>
-                  <span class="upload-hint">Optional &bull; MP4 &bull; Max 1 minute</span>
+                  <div class="upload-formats">MP4 &bull; WebM &bull; MOV &bull; Max 100MB</div>
                 </div>
                 <div class="upload-preview" id="trailerPreview" style="display:none">
-                  <video id="trailerPreviewPlayer" controls></video>
-                  <button type="button" class="upload-remove" id="trailerRemove"><i class="fa-solid fa-trash-can"></i></button>
+                  <div class="video-preview-wrap">
+                    <video id="trailerPreviewPlayer" class="video-preview-player"></video>
+                    <div class="video-preview-overlay" id="trailerPreviewOverlay">
+                      <button type="button" class="video-play-btn" id="trailerPlayBtn"><i class="fa-solid fa-play"></i></button>
+                    </div>
+                    <div class="video-preview-info">
+                      <span class="video-preview-duration" id="trailerPreviewDuration">--:--</span>
+                    </div>
+                  </div>
+                  <div class="video-preview-actions">
+                    <button type="button" class="video-action-btn video-replace" id="trailerReplace"><i class="fa-solid fa-arrow-up-from-bracket"></i> Replace</button>
+                    <button type="button" class="video-action-btn video-remove" id="trailerRemove"><i class="fa-solid fa-trash-can"></i> Remove</button>
+                  </div>
+                  <div class="upload-progress" id="trailerProgress" style="display:none">
+                    <div class="upload-progress-bar"><div class="upload-progress-fill" id="trailerProgressFill"></div></div>
+                    <span class="upload-progress-text" id="trailerProgressText">Uploading...</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -246,12 +260,19 @@
               <button type="button" class="suggestion-tag" data-tag="Design">Design</button>
             </div>
             <div class="form-group" style="margin-top:24px">
-              <label for="countryVisibility">Country Visibility</label>
-              <select id="countryVisibility" name="countryVisibility" multiple size="6">
-                <option value="Global">Global (Everyone)</option>
-                <option value="" disabled id="countryLoadingOption">Loading countries...</option>
-              </select>
-              <small class="helper-text">Hold Ctrl/Cmd to select multiple countries. Select Global for worldwide availability.</small>
+              <label>Country Visibility</label>
+              <div class="picker-trigger" id="countryTrigger">
+                <div class="picker-trigger-left">
+                  <i class="fa-solid fa-search"></i>
+                  <span class="picker-placeholder" id="countryPlaceholder">Click to select countries</span>
+                </div>
+                <div class="picker-trigger-right">
+                  <span class="picker-count" id="countryCount" style="display:none">0</span>
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+              </div>
+              <div class="picker-chips" id="countryChips"></div>
+              <small class="helper-text">Select specific countries or choose "Global (Everyone)" for worldwide availability.</small>
             </div>
           </div>
         </div>
@@ -275,8 +296,16 @@
                 <small class="helper-text">When will the course begin?</small>
               </div>
               <div class="form-group">
-                <label for="startTime">Course Start Time</label>
-                <input type="time" id="startTime" name="startTime" />
+                <label>Course Start Time</label>
+                <div class="time-picker-trigger" id="startTimeTrigger">
+                  <div class="time-picker-left">
+                    <i class="fa-regular fa-clock"></i>
+                    <span class="time-placeholder" id="startTimePlaceholder">Click to select time</span>
+                    <span class="time-value" id="startTimeValue" style="display:none"></span>
+                  </div>
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <input type="hidden" id="startTime" name="startTime" value="" />
               </div>
             </div>
             <div class="form-row">
@@ -286,34 +315,32 @@
                 <small class="helper-text">Leave blank if the course has no fixed end date.</small>
               </div>
               <div class="form-group">
-                <label for="endTime">Course End Time <span class="optional">optional</span></label>
-                <input type="time" id="endTime" name="endTime" />
+                <label>Course End Time <span class="optional">optional</span></label>
+                <div class="time-picker-trigger" id="endTimeTrigger">
+                  <div class="time-picker-left">
+                    <i class="fa-regular fa-clock"></i>
+                    <span class="time-placeholder" id="endTimePlaceholder">Click to select time</span>
+                    <span class="time-value" id="endTimeValue" style="display:none"></span>
+                  </div>
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <input type="hidden" id="endTime" name="endTime" value="" />
               </div>
             </div>
             <div class="form-group">
-              <label for="timezone">Time Zone</label>
-              <select id="timezone" name="timezone">
-                <option value="Africa/Lagos">Africa/Lagos (WAT)</option>
-                <option value="Africa/Cairo">Africa/Cairo (EET)</option>
-                <option value="Africa/Johannesburg">Africa/Johannesburg (SAST)</option>
-                <option value="Africa/Nairobi">Africa/Nairobi (EAT)</option>
-                <option value="Europe/London">Europe/London (GMT/BST)</option>
-                <option value="Europe/Paris">Europe/Paris (CET/CEST)</option>
-                <option value="Europe/Berlin">Europe/Berlin (CET/CEST)</option>
-                <option value="America/New_York">America/New_York (EST/EDT)</option>
-                <option value="America/Chicago">America/Chicago (CST/CDT)</option>
-                <option value="America/Denver">America/Denver (MST/MDT)</option>
-                <option value="America/Los_Angeles">America/Los_Angeles (PST/PDT)</option>
-                <option value="America/Toronto">America/Toronto (EST/EDT)</option>
-                <option value="Asia/Dubai">Asia/Dubai (GST)</option>
-                <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
-                <option value="Asia/Shanghai">Asia/Shanghai (CST)</option>
-                <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
-                <option value="Asia/Singapore">Asia/Singapore (SGT)</option>
-                <option value="Australia/Sydney">Australia/Sydney (AEST/AEDT)</option>
-                <option value="Pacific/Auckland">Pacific/Auckland (NZST/NZDT)</option>
-                <option value="UTC">UTC</option>
-              </select>
+              <label>Time Zone</label>
+              <div class="picker-trigger" id="timezoneTrigger">
+                <div class="picker-trigger-left">
+                  <i class="fa-solid fa-globe"></i>
+                  <span class="picker-placeholder" id="timezonePlaceholder">Click to select time zone</span>
+                </div>
+                <div class="picker-trigger-right">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+              </div>
+              <div class="picker-chips" id="timezoneChips"></div>
+              <input type="hidden" id="timezone" name="timezone" value="" />
+              <small class="helper-text">Select the time zone for your course schedule.</small>
             </div>
           </div>
         </div>
@@ -414,6 +441,32 @@
                   <p>No thumbnail uploaded</p>
                 </div>
               </div>
+              <div class="review-card review-video-card" id="reviewPromoVideoCard">
+                <h4>Promotional Video</h4>
+                <div class="review-video-placeholder" id="reviewPromoPlaceholder">
+                  <i class="fa-solid fa-video"></i>
+                  <p>No promotional video</p>
+                </div>
+                <div class="review-video-wrap" id="reviewPromoWrap" style="display:none">
+                  <video class="review-video-player" id="reviewPromoPlayer" preload="metadata"></video>
+                  <div class="review-video-overlay" id="reviewPromoOverlay">
+                    <button type="button" class="review-play-btn"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="review-card review-video-card" id="reviewTrailerVideoCard">
+                <h4>Trailer Video</h4>
+                <div class="review-video-placeholder" id="reviewTrailerPlaceholder">
+                  <i class="fa-solid fa-film"></i>
+                  <p>No trailer video</p>
+                </div>
+                <div class="review-video-wrap" id="reviewTrailerWrap" style="display:none">
+                  <video class="review-video-player" id="reviewTrailerPlayer" preload="metadata"></video>
+                  <div class="review-video-overlay" id="reviewTrailerOverlay">
+                    <button type="button" class="review-play-btn"><i class="fa-solid fa-play"></i></button>
+                  </div>
+                </div>
+              </div>
               <div class="review-card">
                 <h4>Course Basics</h4>
                 <div class="review-items" id="reviewInfo"></div>
@@ -466,6 +519,94 @@
 
 <!-- MOBILE OVERLAY -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- CATEGORY MODAL -->
+<div class="picker-modal-overlay" id="categoryModalOverlay"></div>
+<div class="picker-modal" id="categoryModal">
+  <div class="picker-modal-header">
+    <h3>Select Categories</h3>
+    <button type="button" class="picker-modal-close" id="categoryModalClose"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="picker-modal-search">
+    <i class="fa-solid fa-search"></i>
+    <input type="text" id="categorySearch" placeholder="Search categories..." />
+  </div>
+  <div class="picker-modal-body" id="categoryModalBody"></div>
+  <div class="picker-modal-footer">
+    <button type="button" class="picker-modal-btn" id="categoryModalDone">Done</button>
+  </div>
+</div>
+
+<!-- COUNTRY MODAL -->
+<div class="picker-modal-overlay" id="countryModalOverlay"></div>
+<div class="picker-modal" id="countryModal">
+  <div class="picker-modal-header">
+    <h3>Select Countries</h3>
+    <button type="button" class="picker-modal-close" id="countryModalClose"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="picker-modal-search">
+    <i class="fa-solid fa-search"></i>
+    <input type="text" id="countrySearch" placeholder="Search countries..." />
+  </div>
+  <div class="picker-modal-body" id="countryModalBody">
+    <div class="picker-modal-option picker-global-option" data-value="Global">
+      <span class="picker-option-check"><i class="fa-solid fa-check"></i></span>
+      <span class="picker-option-label">🌍 Global (Everyone)</span>
+    </div>
+    <div class="picker-modal-divider"></div>
+    <div class="picker-loading" id="countryLoading">Loading countries...</div>
+  </div>
+  <div class="picker-modal-footer">
+    <button type="button" class="picker-modal-btn" id="countryModalDone">Done</button>
+  </div>
+</div>
+
+<!-- TIME ZONE MODAL -->
+<div class="picker-modal-overlay" id="timezoneModalOverlay"></div>
+<div class="picker-modal" id="timezoneModal">
+  <div class="picker-modal-header">
+    <h3>Select Time Zone</h3>
+    <button type="button" class="picker-modal-close" id="timezoneModalClose"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="picker-modal-search">
+    <i class="fa-solid fa-search"></i>
+    <input type="text" id="timezoneSearch" placeholder="Search time zones..." />
+  </div>
+  <div class="picker-modal-body" id="timezoneModalBody"></div>
+  <div class="picker-modal-footer">
+    <button type="button" class="picker-modal-btn" id="timezoneModalDone">Done</button>
+  </div>
+</div>
+
+<!-- TIME PICKER MODAL -->
+<div class="picker-modal-overlay" id="timePickerOverlay"></div>
+<div class="picker-modal time-picker-modal" id="timePickerModal">
+  <div class="picker-modal-header">
+    <h3 id="timePickerTitle">Select Time</h3>
+    <button type="button" class="picker-modal-close" id="timePickerClose"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="time-picker-body">
+    <div class="time-picker-preview" id="timePickerPreview">--:-- --</div>
+    <div class="time-picker-columns">
+      <div class="time-picker-col">
+        <span class="time-picker-col-label">Hour</span>
+        <div class="time-picker-list" id="timePickerHours"></div>
+      </div>
+      <div class="time-picker-sep">:</div>
+      <div class="time-picker-col">
+        <span class="time-picker-col-label">Minute</span>
+        <div class="time-picker-list" id="timePickerMinutes"></div>
+      </div>
+      <div class="time-picker-col time-picker-period-col">
+        <span class="time-picker-col-label">Period</span>
+        <div class="time-picker-periods" id="timePickerPeriods"></div>
+      </div>
+    </div>
+  </div>
+  <div class="picker-modal-footer">
+    <button type="button" class="picker-modal-btn" id="timePickerDone">Done</button>
+  </div>
+</div>
 
 <!-- SUCCESS MODAL -->
 <div class="modal-overlay" id="successModalOverlay"></div>
